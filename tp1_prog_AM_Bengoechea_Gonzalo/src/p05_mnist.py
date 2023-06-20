@@ -10,10 +10,12 @@ from linear_model import LinearModel
 cols = pd.read_csv('./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_train.csv', nrows=1).columns
 df= pd.read_csv('./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_train.csv', usecols=cols[1:])
 df_y= pd.read_csv('./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_train.csv', usecols=["label"])
+
 # Descomentar para ver la imágen 1 o cambiar dicho número para ver otras
 #plt.imshow(np.array(df.iloc[1, :]).reshape(28,28),cmap="gray")
 #plt.colorbar()
 #plt.show()
+
 # Imágenes que contengan 3 quedan con label 1 y el resto 0
 y = df_y[0]
 for i in range(len(y)):
@@ -22,6 +24,7 @@ for i in range(len(y)):
     else:
         y[i] = 1
 # Equilibrar cantidad de labels para optimizar el clasificador
+
 # *** EMPEZAR CÓDIGO AQUÍ ***
 
 # *** TERMINAR CÓDIGO AQUÍ ***

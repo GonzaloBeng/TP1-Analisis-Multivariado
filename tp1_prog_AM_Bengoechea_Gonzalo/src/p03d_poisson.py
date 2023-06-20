@@ -15,12 +15,17 @@ def p03d(lr, train_path, eval_path, pred_path):
     """
     # Cargar dataset
     x_train, y_train = util.load_dataset(train_path, add_intercept=False)
+    x_eval, y_eval = util.load_dataset(eval_path, add_intercept=False)
 
     # *** EMPEZAR EL CÓDIGO AQUÍ ***
 
     # Entrenar una regresión poisson
     # Correr en el conjunto de validación, y usar  np.savetxt para guardar las salidas en pred_path.
-    
+    Modelo = PoissonRegression(step_size=lr, verbose=True)
+    Modelo.fit(x_train, y_train)
+    predic = Modelo.predict(x_eval)
+
+    np.savetxt(pred_path + "\p03d_poisson.txt", predic, delimiter=",")
     # *** TERMINAR CÓDIGO AQUÍ
 
 
@@ -41,7 +46,29 @@ class PoissonRegression(LinearModel):
             y: etiquetas de ejemplos de entrenamiento. Tamaño (m,).
         """
         # *** EMPEZAR EL CÓDIGO AQUÍ ***
+        m, n = x.shape
 
+        if self.theta is None:
+            self.theta = np.zeros(n)
+
+        
+        def grad(theta):
+            return 1/n * (y - np.exp(x.dot(theta))) @ x
+        
+        for i in range(self.max_iter):
+            gradiente = grad(self.theta)
+            nuevo_theta = self.theta + self.step_size * gradiente
+            error = np.linalg.norm(self.theta - nuevo_theta)
+            self.theta = nuevo_theta
+
+            if error < self.eps:
+                break
+
+        if self.verbose:
+            print(f"Terminado en {i} iteraciones")
+            print(f"Error: {error}")
+            print(f"Theta: {self.theta}")
+        
         # *** TERMINAR CÓDIGO AQUÍ
 
     def predict(self, x):
@@ -55,4 +82,8 @@ class PoissonRegression(LinearModel):
         """
         # *** EMPEZAR EL CÓDIGO AQUÍ ***
 
-        # *** TERMINAR CÓDIGO AQUÍ
+        eta = self.theta @ x.T
+        predic_lambda = np.exp(eta)
+
+        return predic_lambda
+        # *** TERMINAR CÓDIGO AQUÍ ***

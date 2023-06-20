@@ -1,12 +1,12 @@
 from p01b_logreg import p01b
 from p01e_gda import p01e
 from p02cde_posonly import p02cde
-# from p03d_poisson import p03
+from p03d_poisson import p03d
 # from p05b_lwr import p05b
 # from p05c_tau import p05c
 
 
-correr = 2  #CAMBIAR POR número de problema a correr. 0 corre todos.
+correr = 3  #CAMBIAR POR número de problema a correr. 0 corre todos.
 
 # Problema 1
 if correr == 0 or correr == 1:
@@ -44,10 +44,10 @@ if correr == 0 or correr == 2:
 
 # Problema 3
 if correr == 0 or correr == 3:
-    p03(lr=1e-7,
+    p03d(lr=1e-7,
         train_path='./tp1_prog_AM_Bengoechea_Gonzalo/data/ds4_train.csv',
         eval_path='./tp1_prog_AM_Bengoechea_Gonzalo/data/ds4_valid.csv',
-        pred_path='./tp1_prog_AM_Bengoechea_Gonzalo/outputs/p03/p03d_pred.txt')
+        pred_path='./tp1_prog_AM_Bengoechea_Gonzalo/outputs/p03d')
 
 # Problema 5
 if correr == 0 or correr == 5:
