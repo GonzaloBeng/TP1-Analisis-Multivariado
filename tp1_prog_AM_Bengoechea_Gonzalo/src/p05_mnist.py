@@ -6,26 +6,48 @@ import random
 from sklearn.model_selection import train_test_split
 from linear_model import LinearModel
 
-# Datos
-cols = pd.read_csv('./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_train.csv', nrows=1).columns
-df= pd.read_csv('./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_train.csv', usecols=cols[1:])
-df_y= pd.read_csv('./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_train.csv', usecols=["label"])
 
-# Descomentar para ver la imágen 1 o cambiar dicho número para ver otras
-#plt.imshow(np.array(df.iloc[1, :]).reshape(28,28),cmap="gray")
-#plt.colorbar()
-#plt.show()
-
-# Imágenes que contengan 3 quedan con label 1 y el resto 0
-y = df_y[0]
-for i in range(len(y)):
-    if y[i] != 1:
-        y[i] = 0
-    else:
-        y[i] = 1
-# Equilibrar cantidad de labels para optimizar el clasificador
 
 # *** EMPEZAR CÓDIGO AQUÍ ***
+
+def p05a(lr,eps,max_iter,train_path, eval_path, pred_path,seed=42):
+    # Datos
+    cols = pd.read_csv('./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_train.csv', nrows=1).columns
+    df= pd.read_csv('./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_train.csv', usecols=cols[1:])
+    df_y= pd.read_csv('./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_train.csv', usecols=["label"])
+    y = df_y["label"]
+
+    # Descomentar para ver la imágen 1 o cambiar dicho número para ver otras
+    #plt.imshow(np.array(df.iloc[1, :]).reshape(28,28),cmap="gray")
+    #plt.colorbar()
+    #plt.show()
+
+    # Imágenes que contengan 3 quedan con label 1 y el resto 0
+    y = df_y[0]
+    for i in range(len(y)):
+        if y[i] != 1:
+            y[i] = 0
+        else:
+            y[i] = 1
+
+    # Equilibrar cantidad de labels para optimizar el clasificador
+
+    #Muestras de 0
+    df_0 = df[y == 0]
+    df_0 = df_0.sample(n=6000, random_state=seed)
+
+    #Muestras de 1
+    df_1 = df[y == 1]
+    df_1 = df_1.sample(n=6000, random_state=seed)
+
+    #Concatenar
+    X = pd.concat([df_0, df_1])
+
+    #Mismo procedimiento para y
+    df_0_y = y[y == 0].sample(n=6000, random_state=seed)
+    df_1_y = y[y == 1].sample(n=6000, random_state=seed)
+    y = pd.concat([df_0_y, df_1_y])
+
 
 # *** TERMINAR CÓDIGO AQUÍ ***
 
