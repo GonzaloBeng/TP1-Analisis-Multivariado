@@ -53,9 +53,9 @@ class PoissonRegression(LinearModel):
 
         
         def grad(theta):
-            return 1/n * (y - np.exp(x.dot(theta))) @ x
+            return 1/m * (y - np.exp(x.dot(theta))) @ x
         
-        for i in range(self.max_iter):
+        for i in range(self.max_iter*40):
             gradiente = grad(self.theta)
             nuevo_theta = self.theta + self.step_size * gradiente
             error = np.linalg.norm(self.theta - nuevo_theta)

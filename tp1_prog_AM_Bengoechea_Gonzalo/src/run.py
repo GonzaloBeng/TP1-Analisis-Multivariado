@@ -2,11 +2,10 @@ from p01b_logreg import p01b
 from p01e_gda import p01e
 from p02cde_posonly import p02cde
 from p03d_poisson import p03d
-# from p05b_lwr import p05b
-# from p05c_tau import p05c
+from p05_mnist import p05a, p05b
 
 
-correr = 3  #CAMBIAR POR número de problema a correr. 0 corre todos.
+correr = 5  #CAMBIAR POR número de problema a correr. 0 corre todos.
 
 # Problema 1
 if correr == 0 or correr == 1:
@@ -51,12 +50,16 @@ if correr == 0 or correr == 3:
 
 # Problema 5
 if correr == 0 or correr == 5:
-    p05b(tau=5e-1,
-         train_path='./tp1_prog_AM_Bengoechea_Gonzalo/data/ds5_train.csv',
-         eval_path='./tp1_prog_AM_Bengoechea_Gonzalo/data/ds5_valid.csv')
+#    p05a(lr=5e-6,
+ #        eps=1e-5,
+  #       max_iter=1000,
+   #      train_path='./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_train.csv',
+    #     eval_path='./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_test.csv',
+     #    pred_path='./tp1_prog_AM_Bengoechea_Gonzalo/outputs/p05a')
 
-    p05c(tau_values=[3e-2, 5e-2, 1e-1, 5e-1, 1e0, 1e1],
-         train_path='./tp1_prog_AM_Bengoechea_Gonzalo/data/ds5_train.csv',
-         valid_path='./tp1_prog_AM_Bengoechea_Gonzalo/data/ds5_valid.csv',
-         test_path='./tp1_prog_AM_Bengoechea_Gonzalo/data/ds5_test.csv',
-         pred_path='./tp1_prog_AM_Bengoechea_Gonzalo/outputs/p05b/p05c_pred.txt')
+    p05b(lr=5e-6,
+         eps=1e-5,
+         max_iter=1000,
+         train_path='./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_train.csv',
+         eval_path='./tp1_prog_AM_Bengoechea_Gonzalo/data/mnist_test.csv',
+         pred_path='./tp1_prog_AM_Bengoechea_Gonzalo/outputs/p05b')

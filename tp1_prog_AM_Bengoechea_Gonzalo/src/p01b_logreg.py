@@ -74,12 +74,11 @@ class LogisticRegression(LinearModel):
         
         def gradiente(theta):
             val_sigmoide = sigmoide(theta)
-            return x.T @ (val_sigmoide - y)
+            return 1/m * (x.T @ (val_sigmoide - y))
         
         def hessiano(theta):
             val_sigmoide = sigmoide(theta)
-            val_diagonal = np.diag(val_sigmoide * (1 - val_sigmoide))
-            return x.T @ val_diagonal @ x
+            return 1/m * (val_sigmoide * (1 - val_sigmoide) * x.T @ x)
         
         error = 1
 
