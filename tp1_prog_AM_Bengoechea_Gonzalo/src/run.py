@@ -5,7 +5,7 @@ from p03d_poisson import p03d
 from p05_mnist import p05a, p05b
 
 
-correr = 5  #CAMBIAR POR número de problema a correr. 0 corre todos.
+correr = 1  #CAMBIAR POR número de problema a correr. 0 corre todos.
 
 # Problema 1
 if correr == 0 or correr == 1:

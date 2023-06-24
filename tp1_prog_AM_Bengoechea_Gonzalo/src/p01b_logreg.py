@@ -23,7 +23,7 @@ def p01b(train_path, eval_path, pred_path):
     Modelo.fit(x_train,y_train)
     Modelo.graficos(pred_path)
     pred=Modelo.predict(x_test)
-    np.savetxt(pred_path + "p01b_logreg.csv", pred,delimiter=',')
+    np.savetxt(pred_path + "p01b_logreg.txt", pred,delimiter=',')
 
 
 class LogisticRegression(LinearModel):

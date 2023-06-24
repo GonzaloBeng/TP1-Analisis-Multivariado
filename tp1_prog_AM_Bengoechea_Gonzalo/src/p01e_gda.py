@@ -20,10 +20,10 @@ def p01e(train_path, eval_path, pred_path, transform = False):
     Modelo.fit(x_train,y_train, transform)
     pred=Modelo.predict(x_test)
     if transform:
-        np.savetxt(pred_path + "\p01h_gda.csv", pred,delimiter=',')
+        np.savetxt(pred_path + "\p01h_gda.txt", pred,delimiter=',')
         util.plot(x_train, y_train, Modelo.theta, pred_path + "\plottrain_transform.png")
     else:
-        np.savetxt(pred_path + "\p01e_gda.csv", pred,delimiter=',')
+        np.savetxt(pred_path + "\p01e_gda.txt", pred,delimiter=',')
         util.plot(x_train, y_train, Modelo.theta, pred_path + "\plottrain.png")
 
 
