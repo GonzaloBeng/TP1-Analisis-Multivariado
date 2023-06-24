@@ -37,7 +37,7 @@ class GDA(LinearModel):
     """
 
     def transformar(self, x):
-        return np.log(abs(x))
+        return np.sqrt(np.abs(x)) #np.abs(x)
     
 
     def fit(self, x, y, transform=False):
